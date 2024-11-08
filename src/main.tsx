@@ -6,7 +6,7 @@ import { LoginPage, RootPage } from './components';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={'/tixit/'}>
       <Routes>
         <Route path='/' element={<RootPage />}>
           <Route path='login' element={<LoginPage />} />
