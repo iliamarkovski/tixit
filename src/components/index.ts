@@ -1,13 +1,6 @@
-//atoms
-
-//molecules
-
-//organisms
-
-//templates
-export * from './templates/Layout/Layout';
-export * from './templates/Header/Header';
-
-//pages
-export * from './pages/RootPage';
-export * from './pages/LoginPage/LoginPage';
+export * from './Header';
+export * from './Layout';
+export * from './UserMenu';
+export * from './Avatar';
+export * from './Button';
+export * from './Popover';

@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -10,5 +11,10 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const firebaseAuth = getAuth(app);
+const firebaseProvider = new GoogleAuthProvider();
+firebaseProvider.setCustomParameters({
+  prompt: 'select_account',
+});
 
-export { app };
+export { firebaseAuth, firebaseProvider };
