@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 const UserMenu = () => {
   const { user, logout } = useAuth();
-  console.log('user: ', user);
   const navigate = useNavigate();
 
   const handleClick = () => {
