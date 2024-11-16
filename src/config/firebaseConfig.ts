@@ -15,6 +15,8 @@ const firebaseAuth = getAuth(app);
 const firebaseProvider = new GoogleAuthProvider();
 firebaseProvider.setCustomParameters({
   prompt: 'select_account',
+  display: "wap"
+  
 });
 
 export { firebaseAuth, firebaseProvider };

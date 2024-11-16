@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthProvider';
-import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/Card';
 
@@ -24,8 +23,13 @@ const LoginPage = () => {
       </CardHeader>
       <CardContent>
         <div className="grid gap-4">
-          <Button variant="outline" className="w-full" onClick={handleLogin} disabled={loading}>
-            {loading ? <Loader2 className="animate-spin" /> : null}
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full"
+            onClick={handleLogin}
+            disabled={loading}
+            isLoading={loading}>
             Login with Google
           </Button>
         </div>
