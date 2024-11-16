@@ -1,4 +1,4 @@
-import { firebaseAuth, firebaseProvider } from '@/config';
+import { firebaseAuth, firebaseProvider } from '@/config/firebaseConfig';
 import { signInWithPopup, User, signOut, onAuthStateChanged, UserCredential } from 'firebase/auth';
 import { createContext, ReactNode, useContext, useState, useCallback, useEffect } from 'react';
 
@@ -38,6 +38,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
 
     return () => {
+      setLoading(false);
       unsubscribe();
     };
   }, []);

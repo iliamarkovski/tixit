@@ -1,46 +1,66 @@
-import { Layout } from '@/components';
-import { useAuth } from '@/contexts';
-import { LoginPage } from '@/pages';
-import { ProtectedRoute } from '@/routes';
-import { createBrowserRouter, Link, Navigate, RouterProvider } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthProvider';
+import { HomePage } from '@/pages/HomePage';
+import { LoginPage } from '@/pages/LoginPage';
+import { ProtectedRoute } from '@/routes/ProtectedRoute';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
+import { Dashboard } from '@/components/layouts/Dashboard';
+import { AuthLayout } from '@/components/layouts/AuthLayout';
 
 const AppRouter = () => {
   const { user } = useAuth();
 
-  const router = createBrowserRouter([
+  const router = createBrowserRouter(
+    [
+      {
+        element: <AuthLayout />,
+        children: [
+          {
+            path: '/login',
+            element: user ? <Navigate to="/" replace /> : <LoginPage />,
+          },
+        ],
+      },
+      {
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
+        children: [
+          {
+            path: '/',
+            element: <HomePage />,
+          },
+          {
+            path: '/about',
+            element: <h2>About page</h2>,
+          },
+          {
+            path: '*',
+            element: <p>404 Error - Nothing here...</p>,
+          },
+        ],
+      },
+    ],
     {
-      element: <Layout />,
-      children: [
-        {
-          path: '/login',
-          element: user ? <Navigate to="/" replace /> : <LoginPage />,
-        },
-      ],
-    },
-    {
-      element: (
-        <ProtectedRoute>
-          <Layout isAuth />
-        </ProtectedRoute>
-      ),
-      children: [
-        {
-          path: '/',
-          element: <Link to="/about">About</Link>,
-        },
-        {
-          path: '/about',
-          element: <h2>About page</h2>,
-        },
-        {
-          path: '*',
-          element: <p>404 Error - Nothing here...</p>,
-        },
-      ],
-    },
-  ]);
+      future: {
+        v7_fetcherPersist: true,
+        v7_normalizeFormMethod: true,
+        v7_partialHydration: true,
+        v7_relativeSplatPath: true,
+        v7_skipActionErrorRevalidation: true,
+      },
+    }
+  );
 
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider
+      router={router}
+      future={{
+        v7_startTransition: true,
+      }}
+    />
+  );
 };
 
 export { AppRouter };
