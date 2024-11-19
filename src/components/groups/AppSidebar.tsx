@@ -14,6 +14,7 @@ import {
   SidebarRail,
   SidebarSeparator,
 } from '@/components/ui/Sidebar';
+import { Link } from 'react-router-dom';
 
 const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
   return (
@@ -28,9 +29,11 @@ const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton>
-              <Plus />
-              <span>Add tickets</span>
+            <SidebarMenuButton asChild>
+              <Link to="/add">
+                <Plus />
+                Add tickets
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

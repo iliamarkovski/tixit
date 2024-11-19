@@ -17,7 +17,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = useCallback(() => {
     setLoading(true);
-    return signInWithPopup(firebaseAuth, firebaseProvider);
+
+    return signInWithPopup(firebaseAuth, firebaseProvider).finally(() => setLoading(false));
   }, []);
 
   const logout = useCallback(() => {

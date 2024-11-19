@@ -1,10 +1,11 @@
 import { useAuth } from '@/contexts/AuthProvider';
-import { HomePage } from '@/pages/HomePage';
+import { AddPage } from '@/pages/AddPage';
 import { LoginPage } from '@/pages/LoginPage';
 import { ProtectedRoute } from '@/routes/ProtectedRoute';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { Dashboard } from '@/components/layouts/Dashboard';
 import { AuthLayout } from '@/components/layouts/AuthLayout';
+import { HomePage } from '@/pages/HomePage';
 
 const AppRouter = () => {
   const { user } = useAuth();
@@ -30,6 +31,10 @@ const AppRouter = () => {
           {
             path: '/',
             element: <HomePage />,
+          },
+          {
+            path: '/add',
+            element: <AddPage />,
           },
           {
             path: '/about',
